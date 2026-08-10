@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
 <title>Barbearia Martins — Prótese Capilar em Mariana · Corte e Barba</title>
-<meta name="description" content="Especialistas em prótese capilar em Mariana/MG: cabelo cheio no mesmo dia, sem cirurgia. Também corte, barba e coloração. Rua do Catete, 411 — Centro. Terça a sábado, 8h às 22h. WhatsApp (31) 98280-0596.">
+<meta name="description" content="Especialistas em prótese capilar em Mariana/MG: cabelo cheio no mesmo dia, sem cirurgia. Também corte, barba e coloração. Rua do Catete, 411 — Centro. Terça a sexta, 9h às 20h. Sábado, 8h às 18h. WhatsApp (31) 98280-0596.">
 <meta property="og:title" content="Barbearia Martins — Prótese Capilar em Mariana">
 <meta property="og:description" content="Cabelo cheio no mesmo dia, sem cirurgia. Corte, barba e coloração. Rua do Catete, 411 — Centro, Mariana/MG.">
 <meta property="og:type" content="website">
@@ -17,7 +17,7 @@
    BARBEARIA MARTINS
    WhatsApp: (31) 98280-0596   ·   Instagram: @barbeariamartins.0
    Endereço: Rua do Catete, 411 — Centro, Mariana/MG
-   Horário: terça a sábado, 08h às 22h
+   Horário: terça a sexta 09h–20h, sábado 08h–18h
 
    Ao mudar o horário, atualize em 4 lugares:
      1. a tabela da seção "Onde e quando"
@@ -49,12 +49,20 @@
     "addressRegion": "MG",
     "addressCountry": "BR"
   },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "opens": "08:00",
-    "closes": "22:00"
-  }],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
   "sameAs": ["https://www.instagram.com/barbeariamartins.0"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -439,8 +447,8 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       <h1>Especialistas em<br><span>prótese capilar</span></h1>
       <p class="intro">
         Cabelo cheio no mesmo dia, sem cirurgia — é o que mais fazemos aqui.
-        Também cuidamos de <b>corte, barba e coloração</b>, de terça a sábado,
-        das 8h às 22h, na Rua do Catete, 411, em Mariana.
+        Também cuidamos de <b>corte, barba e coloração</b>, terça a sexta das 9h às 20h
+        e sábado das 8h às 18h, na Rua do Catete, 411, em Mariana.
       </p>
       <div class="status" id="status">
         <span class="dot"></span><span id="status-txt">Verificando horário…</span>
@@ -633,11 +641,11 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       <div class="vis-c">
         <h3>Horário</h3>
         <div class="hrow off" data-dia="1"><span>Segunda</span><b>Fechado</b></div>
-        <div class="hrow" data-dia="2"><span>Terça</span><b>08h — 22h</b></div>
-        <div class="hrow" data-dia="3"><span>Quarta</span><b>08h — 22h</b></div>
-        <div class="hrow" data-dia="4"><span>Quinta</span><b>08h — 22h</b></div>
-        <div class="hrow" data-dia="5"><span>Sexta</span><b>08h — 22h</b></div>
-        <div class="hrow" data-dia="6"><span>Sábado</span><b>08h — 22h</b></div>
+        <div class="hrow" data-dia="2"><span>Terça</span><b>09h — 20h</b></div>
+        <div class="hrow" data-dia="3"><span>Quarta</span><b>09h — 20h</b></div>
+        <div class="hrow" data-dia="4"><span>Quinta</span><b>09h — 20h</b></div>
+        <div class="hrow" data-dia="5"><span>Sexta</span><b>09h — 20h</b></div>
+        <div class="hrow" data-dia="6"><span>Sábado</span><b>08h — 18h</b></div>
         <div class="hrow off" data-dia="0"><span>Domingo</span><b>Fechado</b></div>
       </div>
 
@@ -697,7 +705,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
         </a>
       </div>
     </div>
-    <div class="ft-cp">© <span id="yr">2026</span> Barbearia Martins · Terça a sábado, 8h às 22h</div>
+    <div class="ft-cp">© <span id="yr">2026</span> Barbearia Martins · Terça a sexta, 9h–20h · Sábado, 8h–18h</div>
   </div>
 </footer>
 
@@ -735,27 +743,40 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   });
   addEventListener('keydown', function(e){ if(e.key === 'Escape') fecharMenu(); });
 
-  /* aberto agora? terça(2) a sábado(6), 08h–22h */
-  var ABRE = 8, FECHA = 22;
+  /* aberto agora? horário varia por dia — terça a sexta 9h–20h, sábado 8h–18h.
+     domingo(0) e segunda(1) não têm entrada aqui = fechado. */
+  var HORARIOS = {
+    2: {abre: 9, fecha: 20},  // terça
+    3: {abre: 9, fecha: 20},  // quarta
+    4: {abre: 9, fecha: 20},  // quinta
+    5: {abre: 9, fecha: 20},  // sexta
+    6: {abre: 8, fecha: 18},  // sábado
+  };
+  var NOMES_DIA = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+
   function horario(){
     var ag = new Date(), d = ag.getDay(), h = ag.getHours(), m = ag.getMinutes();
     var el = document.getElementById('status'), tx = document.getElementById('status-txt');
     if(!el) return;
 
-    var atende = d >= 2 && d <= 6;
-    var aberto = atende && h >= ABRE && h < FECHA;
+    var hoje = HORARIOS[d];
+    var aberto = !!hoje && h >= hoje.abre && h < hoje.fecha;
 
     el.classList.toggle('open', aberto);
     if(aberto){
-      var faltamMin = (FECHA - h) * 60 - m;   /* minutos até fechar */
-      tx.innerHTML = '<b>Aberto agora</b> · fecha às 22h' +
+      var faltamMin = (hoje.fecha - h) * 60 - m;   /* minutos até fechar */
+      tx.innerHTML = '<b>Aberto agora</b> · fecha às ' + hoje.fecha + 'h' +
         (faltamMin <= 60 ? ' (última hora)' : '');
-    } else if(atende && h < ABRE){
-      tx.innerHTML = '<b>Fechado</b> · abre hoje às 8h';
+    } else if(hoje && h < hoje.abre){
+      tx.innerHTML = '<b>Fechado</b> · abre hoje às ' + hoje.abre + 'h';
     } else {
-      var prox = ['terça','terça','quarta','quinta','sexta','sábado','terça'][d];
-      if(atende && h >= FECHA) prox = (d === 6) ? 'terça' : ['','','quarta','quinta','sexta','sábado',''][d];
-      tx.innerHTML = '<b>Fechado</b> · abre ' + prox + ' às 8h';
+      /* acha o próximo dia com horário definido, começando de amanhã */
+      var prox = null;
+      for(var i = 1; i <= 7 && !prox; i++){
+        var dd = (d + i) % 7;
+        if(HORARIOS[dd]) prox = {dia: NOMES_DIA[dd], abre: HORARIOS[dd].abre};
+      }
+      tx.innerHTML = '<b>Fechado</b> · abre ' + prox.dia + ' às ' + prox.abre + 'h';
     }
 
     /* destaca a linha do dia atual na tabela */
