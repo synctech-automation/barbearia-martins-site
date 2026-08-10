@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Barbearia Martins — Prótese Capilar em Mariana · Corte e Barba</title>
+<meta name="description" content="Especialistas em prótese capilar em Mariana/MG: cabelo cheio no mesmo dia, sem cirurgia. Também corte, barba e coloração. Rua do Catete, 411 — Centro. Terça a sábado, 8h às 22h. WhatsApp (31) 98280-0596.">
+<meta property="og:title" content="Barbearia Martins — Prótese Capilar em Mariana">
+<meta property="og:description" content="Cabelo cheio no mesmo dia, sem cirurgia. Corte, barba e coloração. Rua do Catete, 411 — Centro, Mariana/MG.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/logo.png">
+
+<!--
+  ───────────────────────────────────────────────────────────
+   BARBEARIA MARTINS
+   WhatsApp: (31) 98280-0596   ·   Instagram: @barbeariamartins.0
+   Endereço: Rua do Catete, 411 — Centro, Mariana/MG
+   Horário: terça a sábado, 08h às 22h
+
+   Ao mudar o horário, atualize em 4 lugares:
+     1. a tabela da seção "Onde e quando"
+     2. as constantes ABRE / FECHA no JavaScript (aviso de aberto/fechado)
+     3. o texto do rodapé
+     4. o bloco de dados estruturados (application/ld+json) aqui no topo
+
+   FOTOS: coloque as fotos dos cortes em  assets/fotos/
+   com os nomes 1.jpg, 2.jpg, 3.jpg ... até 8.jpg
+   A galeria aparece sozinha quando os arquivos existirem.
+  ───────────────────────────────────────────────────────────
+-->
+
+<!-- Dados estruturados: faz o Google mostrar horário, endereço e telefone direto na busca -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Barbearia Martins",
+  "description": "Barbearia especializada em prótese capilar em Mariana/MG. Também corte de cabelo, barba, pintura e coloração masculina.",
+  "image": "assets/logo.png",
+  "telephone": "+55-31-98280-0596",
+  "priceRange": "$$",
+  "currenciesAccepted": "BRL",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua do Catete, 411",
+    "addressLocality": "Mariana",
+    "addressRegion": "MG",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "08:00",
+    "closes": "22:00"
+  }],
+  "sameAs": ["https://www.instagram.com/barbeariamartins.0"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Serviços",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Prótese capilar" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corte de cabelo" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Barba" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pintura e coloração" } }
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#000;
+  --bg2:#080A07;
+  --card:#0D100B;
+  --line:#1E2618;
+  --line2:#2C3722;
+
+  --moss:#A9BC85;
+  --moss-lt:#C6D6A6;
+  --moss-dk:#6E7F4E;
+  --moss-deep:#232C1B;
+
+  --txt:#F0F2EA;
+  --mut:#98A08B;
+  --dim:#666E5C;
+
+  --disp:"Oswald","Arial Narrow",Haettenschweiler,Impact,sans-serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --max:1080px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--txt);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  font-size:15.5px;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+h1,h2,h3,.disp{
+  font-family:var(--disp);font-weight:500;
+  letter-spacing:.005em;line-height:1.08;text-transform:uppercase;
+}
+h2{font-size:clamp(26px,4.4vw,40px)}
+.eyebrow{
+  font-family:var(--disp);font-size:12px;letter-spacing:.3em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:12px;
+}
+.sec{padding:82px 0;border-top:1px solid var(--line)}
+.sec-hd{max-width:600px;margin-bottom:44px}
+.sec-hd p{color:var(--mut);margin-top:14px;font-size:16px}
+
+/* ── logo ── */
+.lgw{display:block;line-height:0}
+.lgw img{width:100%;height:100%;object-fit:contain;mix-blend-mode:screen}
+
+/* ── botões ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--disp);font-size:15px;letter-spacing:.07em;text-transform:uppercase;
+  padding:15px 26px;border-radius:3px;border:1px solid transparent;cursor:pointer;
+  transition:background .18s,border-color .18s,color .18s;
+}
+.btn svg{width:17px;height:17px;flex:none}
+.btn-p{background:var(--moss);color:#0A0E07;font-weight:600}
+.btn-p:hover{background:var(--moss-lt)}
+.btn-o{border-color:var(--line2);color:var(--txt)}
+.btn-o:hover{border-color:var(--moss-dk);color:var(--moss)}
+
+/* ── status aberto/fechado ── */
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:13.5px;color:var(--mut);
+  border:1px solid var(--line);border-radius:3px;padding:8px 14px;
+  background:var(--card);
+}
+.status .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--dim);flex:none;
+}
+.status.open .dot{background:#5FD08A;box-shadow:0 0 0 3px rgba(95,208,138,.16)}
+.status.open b{color:#8FE0AE}
+.status b{color:var(--mut);font-weight:600}
+
+/* ══ NAV ══ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;padding:14px 0;
+  transition:background .25s,border-color .25s;border-bottom:1px solid transparent;
+}
+.nav.on{background:rgba(0,0,0,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-lg{display:flex;align-items:center;gap:10px}
+.nav-lg .lgw{width:36px;height:36px;flex:none}
+.nav-lg b{font-family:var(--disp);font-size:17px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.nav-lk{display:flex;gap:26px}
+.nav-lk a{
+  font-family:var(--disp);font-size:14px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--mut);transition:color .2s;
+}
+.nav-lk a:hover{color:var(--moss)}
+.nav-lk a.destaque{color:var(--moss)}
+.nav-lk a.destaque::before{content:"● ";font-size:8px;vertical-align:middle;opacity:.8}
+.nav .btn{padding:10px 18px;font-size:13.5px}
+
+/* botão do menu — só aparece no celular */
+.nav-btn{
+  display:none;background:none;border:1px solid var(--line2);border-radius:3px;
+  padding:10px 11px;cursor:pointer;
+}
+.nav-btn span{display:block;width:18px;height:2px;background:var(--txt);border-radius:2px;
+  transition:transform .25s,opacity .2s}
+.nav-btn span + span{margin-top:4px}
+.nav.aberto .nav-btn span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav.aberto .nav-btn span:nth-child(2){opacity:0}
+.nav.aberto .nav-btn span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+@media(max-width:880px){
+  .nav-btn{display:block}
+  .nav-in{position:relative}
+  /* .nav-in já é o .wrap (padding 0 24px), então 0/0 cobre a tela toda */
+  .nav-lk{
+    position:absolute;left:0;right:0;top:calc(100% + 14px);
+    flex-direction:column;gap:0;background:#000;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    max-height:0;overflow:hidden;transition:max-height .3s ease;
+  }
+  .nav.aberto .nav-lk{max-height:220px}
+  .nav-lk a{padding:16px 24px;font-size:15px}
+  .nav-lk a + a{border-top:1px solid var(--line)}
+}
+@media(max-width:420px){
+  .nav-lg b{display:none}
+  .nav .btn{padding:10px 14px;font-size:12.5px}
+}
+
+/* ══ HERO ══ */
+.hero{padding:132px 0 74px}
+.hero-in{
+  display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:center;
+}
+.hero-lg{width:100%;aspect-ratio:1}
+.hero h1{font-size:clamp(34px,5.6vw,56px);letter-spacing:.01em}
+.hero h1 span{color:var(--moss);display:block}
+.hero .intro{color:var(--mut);font-size:17px;margin-top:20px;max-width:520px}
+.hero .intro b{color:var(--txt);font-weight:600}
+.hero-act{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.hero .status{margin-top:22px}
+@media(max-width:840px){
+  .hero{padding:112px 0 60px;text-align:center}
+  .hero-in{grid-template-columns:1fr;gap:30px;justify-items:center}
+  .hero-lg{width:min(210px,52vw)}
+  .hero .intro{margin-left:auto;margin-right:auto}
+  .hero-act{justify-content:center}
+}
+
+/* ══ SERVIÇOS — lista editorial, não cards ══ */
+.svc-list{border-top:1px solid var(--line)}
+.svc{
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;
+  padding:26px 0;border-bottom:1px solid var(--line);
+  transition:padding-left .25s;
+}
+.svc:hover{padding-left:10px}
+.svc h3{font-size:23px;letter-spacing:.03em}
+.svc p{color:var(--mut);margin-top:7px;max-width:560px;font-size:15px}
+.svc .ask{
+  font-family:var(--disp);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--moss);white-space:nowrap;padding-top:5px;transition:color .2s;
+}
+.svc:hover .ask{color:var(--moss-lt)}
+@media(max-width:600px){
+  .svc{grid-template-columns:1fr;gap:10px}
+  .svc .ask{padding-top:0}
+}
+
+/* ══ clube de assinatura ══ */
+.clube{
+  border:1px solid var(--moss-deep);border-radius:4px;margin-top:42px;
+  background:linear-gradient(100deg,rgba(169,188,133,.07),transparent 62%);
+  padding:30px 32px;display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;
+}
+.clube h3{font-size:22px;letter-spacing:.03em;margin-top:4px}
+.clube p{color:var(--mut);margin-top:8px;font-size:15px;max-width:520px}
+@media(max-width:720px){.clube{grid-template-columns:1fr;gap:18px;padding:26px 22px}}
+
+/* ══ PRÓTESE — seção principal, é a especialidade ══ */
+.pro{
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%,rgba(169,188,133,.09),transparent 65%),
+    var(--bg2);
+  border-top:2px solid var(--moss);
+}
+.selo{
+  display:inline-flex;align-items:center;gap:9px;background:var(--moss);color:#0A0E07;
+  font-family:var(--disp);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;padding:6px 14px;border-radius:2px;margin-bottom:18px;
+}
+.pro h2.big{font-size:clamp(32px,5.6vw,52px);line-height:1.04}
+.pro h2.big span{color:var(--moss);display:block}
+
+/* topo: imagem antes/depois + argumento */
+.pro-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:34px}
+@media(max-width:880px){.pro-top{grid-template-columns:1fr;gap:32px}}
+.pro-ad{border:1px solid var(--line2);border-radius:4px;overflow:hidden;background:#000}
+.pro-ad img{width:100%;height:auto}
+.pro-top .txt p{color:var(--mut);font-size:16.5px;margin-bottom:16px}
+.pro-top .txt .btn{margin-top:8px}
+
+/* pontos-chave */
+.pontos{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:22px 0 26px}
+.pontos div{background:var(--bg2);padding:15px 16px}
+.pontos b{font-family:var(--disp);font-size:15.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--moss);display:block}
+.pontos span{color:var(--mut);font-size:13.5px;display:block;margin-top:2px}
+@media(max-width:460px){.pontos{grid-template-columns:1fr}}
+
+/* resultados reais */
+.res{margin-top:56px}
+.res .lbl{font-family:var(--disp);font-size:12px;letter-spacing:.3em;color:var(--dim);
+  text-transform:uppercase;margin-bottom:16px}
+.res-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.res-g figure{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000}
+.res-g img{width:100%;aspect-ratio:9/14;object-fit:cover;transition:transform .35s}
+.res-g figure:hover img{transform:scale(1.04)}
+.res-g figcaption{font-size:12.5px;color:var(--dim);padding:9px 12px;letter-spacing:.03em}
+/* no celular vira carrossel: mostra as 3 em vez de esconder uma */
+@media(max-width:640px){
+  .res-g{
+    display:flex;overflow-x:auto;gap:10px;padding-bottom:6px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .res-g::-webkit-scrollbar{display:none}
+  .res-g figure{flex:0 0 70%;scroll-snap-align:start}
+}
+
+.pro-g{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start;margin-top:56px}
+@media(max-width:880px){.pro-g{grid-template-columns:1fr;gap:38px}}
+.pro-g .txt p{color:var(--mut);margin-top:16px;font-size:16px}
+.pro-g .txt .btn{margin-top:26px}
+.fq{border-bottom:1px solid var(--line)}
+.fq:first-child{border-top:1px solid var(--line)}
+.fq summary{
+  padding:17px 0;cursor:pointer;list-style:none;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-weight:600;font-size:15.5px;transition:color .2s;
+}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary:hover{color:var(--moss)}
+.fq summary::after{
+  content:"";width:9px;height:9px;flex:none;
+  border-right:1.6px solid var(--moss);border-bottom:1.6px solid var(--moss);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s;
+}
+.fq[open] summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+.fq[open] summary{color:var(--moss)}
+.fq p{color:var(--mut);padding:0 0 20px;max-width:560px;font-size:15px}
+
+/* ══ GALERIA ══ */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;
+  filter:grayscale(.25);transition:filter .3s,transform .3s}
+.gal img:hover{filter:none;transform:scale(1.02)}
+@media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ VISITE ══ */
+.vis-g{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+@media(max-width:780px){.vis-g{grid-template-columns:1fr}}
+.vis-c{padding:34px 32px}
+.vis-c + .vis-c{border-left:1px solid var(--line)}
+@media(max-width:780px){.vis-c + .vis-c{border-left:0;border-top:1px solid var(--line)}}
+.vis-c h3{font-size:14px;letter-spacing:.2em;color:var(--dim);margin-bottom:20px}
+.hrow{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:9px 0;font-size:15px;border-bottom:1px solid rgba(30,38,24,.55);
+}
+.hrow:last-child{border-bottom:0}
+.hrow span{color:var(--mut)}
+.hrow b{font-weight:600;font-variant-numeric:tabular-nums}
+.hrow.off b{color:var(--dim);font-weight:400}
+.hrow.now{background:rgba(169,188,133,.06);margin:0 -12px;padding-left:12px;padding-right:12px;border-radius:2px}
+.hrow.now span,.hrow.now b{color:var(--moss)}
+.addr .street{font-family:var(--disp);font-size:26px;letter-spacing:.03em}
+.addr .city{color:var(--mut);margin-top:5px}
+.vis-c .btn{margin-top:24px;width:100%}
+.mapl{
+  display:inline-flex;align-items:center;gap:7px;margin-top:18px;
+  color:var(--moss);font-size:14.5px;font-weight:600;
+  border-bottom:1px solid var(--moss-deep);padding-bottom:2px;transition:border-color .2s;
+}
+.mapl:hover{border-color:var(--moss)}
+
+/* ══ CTA ══ */
+.cta{text-align:center;background:var(--bg2)}
+.cta .lgw{width:104px;margin:0 auto 24px}
+.cta h2{font-size:clamp(28px,5vw,44px)}
+.cta p{color:var(--mut);margin-top:14px;font-size:16.5px}
+.cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.cta .fone{
+  display:block;margin-top:26px;font-family:var(--disp);font-size:24px;
+  letter-spacing:.06em;color:var(--txt);transition:color .2s;
+}
+.cta .fone:hover{color:var(--moss)}
+
+/* ══ FOOTER ══ */
+.ft{border-top:1px solid var(--line);padding:38px 0 30px;font-size:14px}
+.ft-in{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap;align-items:center}
+.ft-l{display:flex;align-items:center;gap:12px}
+.ft-l .lgw{width:40px;height:40px;flex:none}
+.ft-l b{font-family:var(--disp);font-size:16px;letter-spacing:.06em;display:block}
+.ft-l span{color:var(--dim);font-size:13px}
+.ft-so{display:flex;gap:20px}
+.ft-so a{color:var(--mut);display:flex;align-items:center;gap:7px;transition:color .2s;font-size:14px}
+.ft-so a:hover{color:var(--moss)}
+.ft-so svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7}
+.ft-cp{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+
+/* ══ whats flutuante ══ */
+.float{
+  position:fixed;right:16px;bottom:16px;z-index:80;
+  display:flex;align-items:center;gap:10px;
+  background:var(--moss);color:#0A0E07;
+  padding:13px 18px;border-radius:3px;
+  font-family:var(--disp);font-size:14.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+  box-shadow:0 6px 26px rgba(0,0,0,.5);
+  transition:background .2s;
+}
+.float:hover{background:var(--moss-lt)}
+.float svg{width:20px;height:20px;flex:none}
+@media(max-width:560px){.float span{display:none}.float{padding:15px;border-radius:50%}}
+
+/* ══ reveal ══ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#topo" class="nav-lg">
+      <span class="lgw"><img src="assets/logo.png" alt="Barbearia Martins" width="846" height="845"></span>
+      <b>Barbearia Martins</b>
+    </a>
+    <div class="nav-lk" id="navLinks">
+      <a href="#protese" class="destaque">Prótese capilar</a>
+      <a href="#servicos">Corte e barba</a>
+      <a href="#visite">Horários</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">Agendar</a>
+      <button class="nav-btn" id="navBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="topo">
+  <div class="wrap hero-in">
+    <div class="hero-lg lgw"><img src="assets/logo.png" alt="Barbearia Martins" width="846" height="845"></div>
+    <div>
+      <h1>Especialistas em<br><span>prótese capilar</span></h1>
+      <p class="intro">
+        Cabelo cheio no mesmo dia, sem cirurgia — é o que mais fazemos aqui.
+        Também cuidamos de <b>corte, barba e coloração</b>, de terça a sábado,
+        das 8h às 22h, na Rua do Catete, 411, em Mariana.
+      </p>
+      <div class="status" id="status">
+        <span class="dot"></span><span id="status-txt">Verificando horário…</span>
+      </div>
+      <div class="hero-act">
+        <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          Agendar online
+        </a>
+        <a class="btn btn-o" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20Martins." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PRÓTESE — a especialidade da casa; vem antes dos outros serviços -->
+<section class="sec pro" id="protese">
+  <div class="wrap">
+
+    <div class="rv">
+      <span class="selo">Nossa especialidade</span>
+      <h2 class="big">Prótese capilar<br><span>sem cirurgia, no mesmo dia</span></h2>
+    </div>
+
+    <div class="pro-top rv">
+      <figure class="pro-ad">
+        <img width="640" height="320" src="assets/protese/antes-depois.jpg" alt="Antes e depois de uma prótese capilar feita na Barbearia Martins">
+      </figure>
+
+      <div class="txt">
+        <p>
+          Poucas barbearias da região fazem prótese capilar. Aqui é o que a gente mais faz —
+          e é o serviço que mais muda a cara de quem senta na cadeira.
+        </p>
+        <p>
+          A fixação é por fora, com material próprio pra uso contínuo. Você entra e sai
+          com o cabelo pronto, cortado e finalizado no seu estilo.
+        </p>
+
+        <div class="pontos">
+          <div><b>Sem cirurgia</b><span>Sem agulha, sem anestesia</span></div>
+          <div><b>Não dói</b><span>Aplicação externa, na cadeira</span></div>
+          <div><b>No mesmo dia</b><span>Você sai daqui pronto</span></div>
+          <div><b>Fica natural</b><span>De perto ninguém percebe</span></div>
+        </div>
+
+        <a class="btn btn-p" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pr%C3%B3tese%20capilar." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          Pedir orçamento grátis
+        </a>
+      </div>
+    </div>
+
+    <div class="res rv">
+      <div class="lbl">Trabalhos feitos aqui</div>
+      <div class="res-g">
+        <figure>
+          <img width="360" height="640" src="assets/protese/1.jpg" alt="Cliente antes da aplicação da prótese capilar">
+          <figcaption>Antes da aplicação</figcaption>
+        </figure>
+        <figure>
+          <img width="360" height="640" src="assets/protese/2.jpg" alt="Prótese capilar finalizada, com resultado natural">
+          <figcaption>Resultado finalizado</figcaption>
+        </figure>
+        <figure>
+          <img width="360" height="640" src="assets/protese/3.jpg" alt="Prótese capilar finalizada, com resultado natural">
+          <figcaption>Resultado finalizado</figcaption>
+        </figure>
+      </div>
+    </div>
+
+  <div class="pro-g">
+    <div class="txt rv">
+      <div class="eyebrow">Perguntas frequentes</div>
+      <h2>Dúvida antes<br>de marcar?</h2>
+      <p>Essas são as perguntas que mais chegam no direct. Se a sua não estiver aqui, é só chamar no WhatsApp que a gente responde.</p>
+      <a class="btn btn-o" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20pr%C3%B3tese%20capilar." target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+    </div>
+
+    <div class="rv">
+      <details class="fq" open>
+        <summary>Cai com chuva ou no banho?</summary>
+        <p>Não. Você lava o cabelo, toma banho, pega chuva e treina normalmente. A fixação é feita pra uso contínuo.</p>
+      </details>
+      <details class="fq">
+        <summary>Dói pra colocar?</summary>
+        <p>Não dói. Não é cirurgia nem implante — é aplicação externa, feita aqui mesmo, na cadeira.</p>
+      </details>
+      <details class="fq">
+        <summary>Dá pra perceber que é prótese?</summary>
+        <p>De perto ninguém percebe. A prótese é escolhida pra combinar com o seu cabelo e depois cortada no seu estilo, então o acabamento fica natural.</p>
+      </details>
+      <details class="fq">
+        <summary>Quanto tempo dura?</summary>
+        <p>Com a manutenção em dia, dura meses. A gente já deixa a revisão marcada junto com você pra não passar do ponto.</p>
+      </details>
+      <details class="fq">
+        <summary>Posso treinar, nadar, usar boné?</summary>
+        <p>Pode. Suor, boné e piscina não são problema. A recomendação é só secar bem depois e manter a revisão em dia.</p>
+      </details>
+      <details class="fq">
+        <summary>Quanto custa?</summary>
+        <p>Depende do tipo de prótese e do tamanho da área. Manda uma foto no WhatsApp que a gente passa o orçamento — é gratuito e sem compromisso.</p>
+      </details>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="sec" id="servicos">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <div class="eyebrow">O que mais fazemos</div>
+      <h2>Corte, barba<br>e coloração</h2>
+    </div>
+
+    <div class="svc-list rv">
+      <a class="svc" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20saber%20o%20valor%20do%20corte%20de%20cabelo." target="_blank" rel="noopener">
+        <div>
+          <h3>Corte de cabelo</h3>
+          <p>Degradê, social, navalhado, freestyle e infantil. Acabamento na navalha e finalização — sai daqui pronto.</p>
+        </div>
+        <div class="ask">Consultar valor →</div>
+      </a>
+
+      <a class="svc" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20saber%20o%20valor%20da%20barba." target="_blank" rel="noopener">
+        <div>
+          <h3>Barba</h3>
+          <p>Toalha quente, navalha, óleo e balm. A barba desenhada no formato do seu rosto — e alinhamento quando é só manutenção.</p>
+        </div>
+        <div class="ask">Consultar valor →</div>
+      </a>
+
+      <a class="svc" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20saber%20o%20valor%20da%20pintura%2Fcolora%C3%A7%C3%A3o." target="_blank" rel="noopener">
+        <div>
+          <h3>Pintura e coloração</h3>
+          <p>Cobertura de brancos, platinado, luzes e nevou. Coloração masculina com resultado natural, sem castigar o fio.</p>
+        </div>
+        <div class="ask">Consultar valor →</div>
+      </a>
+    </div>
+
+    <div class="clube rv">
+      <div>
+        <span class="selo">Clube do assinante</span>
+        <h3>Quem vem sempre, assina</h3>
+        <p>
+          Temos plano de assinatura para quem não deixa o visual passar do ponto.
+          Os planos e o que cada um inclui ficam na página de agendamento.
+        </p>
+      </div>
+      <a class="btn btn-o" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">Ver os planos</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA (aparece sozinha quando houver fotos em assets/fotos/) -->
+<section class="sec" id="galeria" hidden>
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="eyebrow">Trabalhos</div>
+      <h2>Feito aqui</h2>
+    </div>
+    <div class="gal" id="gal">
+      <img src="assets/fotos/1.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/2.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/3.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/4.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/5.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/6.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/7.jpg" alt="Corte feito na Barbearia Martins">
+      <img src="assets/fotos/8.jpg" alt="Corte feito na Barbearia Martins">
+    </div>
+  </div>
+</section>
+
+<!-- VISITE -->
+<section class="sec" id="visite">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <div class="eyebrow">Onde e quando</div>
+      <h2>Passa na barbearia</h2>
+    </div>
+
+    <div class="vis-g rv">
+      <div class="vis-c">
+        <h3>Horário</h3>
+        <div class="hrow off" data-dia="1"><span>Segunda</span><b>Fechado</b></div>
+        <div class="hrow" data-dia="2"><span>Terça</span><b>08h — 22h</b></div>
+        <div class="hrow" data-dia="3"><span>Quarta</span><b>08h — 22h</b></div>
+        <div class="hrow" data-dia="4"><span>Quinta</span><b>08h — 22h</b></div>
+        <div class="hrow" data-dia="5"><span>Sexta</span><b>08h — 22h</b></div>
+        <div class="hrow" data-dia="6"><span>Sábado</span><b>08h — 22h</b></div>
+        <div class="hrow off" data-dia="0"><span>Domingo</span><b>Fechado</b></div>
+      </div>
+
+      <div class="vis-c addr">
+        <h3>Endereço</h3>
+        <div class="street">Rua do Catete, 411</div>
+        <div class="city">Centro · Mariana, MG</div>
+        <a class="mapl" href="https://www.google.com/maps/search/?api=1&query=Rua+do+Catete+411+Centro+Mariana+MG" target="_blank" rel="noopener">Abrir no Google Maps →</a>
+        <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          Agendar meu horário
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta">
+  <div class="wrap rv">
+    <div class="lgw"><img src="assets/logo.png" alt="Barbearia Martins" width="846" height="845"></div>
+    <h2>Faça seu agendamento</h2>
+    <p>Escolhe o dia e o horário na nossa agenda online — leva menos de um minuto. Prefere conversar? Chama no WhatsApp.</p>
+    <a class="fone" href="tel:+5531982800596">(31) 98280-0596</a>
+    <div class="row">
+      <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        Agendar online
+      </a>
+      <a class="btn btn-o" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20Martins." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-in">
+      <div class="ft-l">
+        <span class="lgw"><img src="assets/logo.png" alt="" width="846" height="845"></span>
+        <div>
+          <b>Barbearia Martins</b>
+          <span>Rua do Catete, 411 — Centro, Mariana</span>
+        </div>
+      </div>
+      <div class="ft-so">
+        <a href="https://instagram.com/barbeariamartins.0" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          @barbeariamartins.0
+        </a>
+        <a href="https://wa.me/5531982800596" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.3A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          (31) 98280-0596
+        </a>
+      </div>
+    </div>
+    <div class="ft-cp">© <span id="yr">2026</span> Barbearia Martins · Terça a sábado, 8h às 22h</div>
+  </div>
+</footer>
+
+<a class="float" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener" aria-label="Agendar online">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+  <span>Agendar</span>
+</a>
+
+<script>
+(function(){
+  'use strict';
+
+  /* nav com fundo ao rolar */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('on', scrollY > 30); }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* menu do celular */
+  var navBtn = document.getElementById('navBtn'), navLinks = document.getElementById('navLinks');
+  function fecharMenu(){
+    nav.classList.remove('aberto');
+    navBtn.setAttribute('aria-expanded', 'false');
+    navBtn.setAttribute('aria-label', 'Abrir menu');
+  }
+  navBtn.addEventListener('click', function(){
+    var abrindo = !nav.classList.contains('aberto');
+    nav.classList.toggle('aberto', abrindo);
+    navBtn.setAttribute('aria-expanded', String(abrindo));
+    navBtn.setAttribute('aria-label', abrindo ? 'Fechar menu' : 'Abrir menu');
+  });
+  /* fecha ao escolher um item, ao tocar fora ou com Esc */
+  navLinks.addEventListener('click', fecharMenu);
+  document.addEventListener('click', function(e){
+    if(nav.classList.contains('aberto') && !nav.contains(e.target)) fecharMenu();
+  });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') fecharMenu(); });
+
+  /* aberto agora? terça(2) a sábado(6), 08h–22h */
+  var ABRE = 8, FECHA = 22;
+  function horario(){
+    var ag = new Date(), d = ag.getDay(), h = ag.getHours(), m = ag.getMinutes();
+    var el = document.getElementById('status'), tx = document.getElementById('status-txt');
+    if(!el) return;
+
+    var atende = d >= 2 && d <= 6;
+    var aberto = atende && h >= ABRE && h < FECHA;
+
+    el.classList.toggle('open', aberto);
+    if(aberto){
+      var faltamMin = (FECHA - h) * 60 - m;   /* minutos até fechar */
+      tx.innerHTML = '<b>Aberto agora</b> · fecha às 22h' +
+        (faltamMin <= 60 ? ' (última hora)' : '');
+    } else if(atende && h < ABRE){
+      tx.innerHTML = '<b>Fechado</b> · abre hoje às 8h';
+    } else {
+      var prox = ['terça','terça','quarta','quinta','sexta','sábado','terça'][d];
+      if(atende && h >= FECHA) prox = (d === 6) ? 'terça' : ['','','quarta','quinta','sexta','sábado',''][d];
+      tx.innerHTML = '<b>Fechado</b> · abre ' + prox + ' às 8h';
+    }
+
+    /* destaca a linha do dia atual na tabela */
+    var linha = document.querySelector('.hrow[data-dia="' + d + '"]');
+    if(linha && !linha.classList.contains('off')) linha.classList.add('now');
+  }
+  horario();
+  setInterval(horario, 60000);
+
+  /* galeria: remove as fotos que não existem em assets/fotos/.
+     Só mostra a seção se sobrar pelo menos uma. Roda depois que tudo
+     terminou de carregar, então não depende de evento de erro. */
+  var galSec = document.getElementById('galeria'), gal = document.getElementById('gal');
+  if(gal){
+    var feito = false;
+    var conferir = function(){
+      if(feito) return;
+      feito = true;
+      var vivas = 0;
+      [].forEach.call(gal.querySelectorAll('img'), function(im){
+        if(im.complete && im.naturalWidth > 0) vivas++;   /* carregou mesmo */
+        else im.remove();                                  /* faltou ou falhou */
+      });
+      galSec.hidden = vivas === 0;
+    };
+    if(document.readyState === 'complete') conferir();
+    else addEventListener('load', conferir);
+    setTimeout(conferir, 4000);
+  }
+
+  /* reveal */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -50px'});
+  [].forEach.call(document.querySelectorAll('.rv'), function(el){ io.observe(el) });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
