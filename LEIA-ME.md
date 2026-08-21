@@ -61,6 +61,27 @@ Dica: use fotos quadradas (ou perto disso). Antes/depois de prótese funcionam m
 
 ---
 
+## Adicionar vídeos do Instagram
+
+A seção "Vídeos recentes" também **aparece sozinha** — enquanto nenhum link for colado,
+fica escondida.
+
+Para ligar:
+
+1. Abra o Reels no app ou no site do Instagram (@barbeariamartins.0)
+2. Toque nos três pontinhos (⋯) → **Copiar link**
+3. No `index.html`, procure por `COLE-O-LINK-DO-REEL-AQUI` (aparecem 3 vezes)
+4. Troque cada um pelo link copiado, entre as aspas de `data-instgrm-permalink="..."`
+5. Salve — o vídeo aparece embutido de verdade (é o player oficial do Instagram, não um link)
+
+Só tem 3 espaços prontos no arquivo. Se quiser mais, duplique a linha
+`<blockquote class="instagram-media" ...></blockquote>` dentro da `<div class="vids" id="vids">`
+e cole outro link.
+
+Precisa ser um Reels ou post **público** — se a conta virar privada, o vídeo para de aparecer.
+
+---
+
 ## Trocar a logo
 
 A logo usada é `assets/logo.png` (recorte quadrado do brasão).

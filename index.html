@@ -297,10 +297,15 @@ h2{font-size:clamp(26px,4.4vw,40px)}
 .res .lbl{font-family:var(--disp);font-size:12px;letter-spacing:.3em;color:var(--dim);
   text-transform:uppercase;margin-bottom:16px}
 .res-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.res-g figure{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000}
+.res-g .res-lk{display:contents}
+.res-g figure{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000;position:relative}
 .res-g img{width:100%;aspect-ratio:9/14;object-fit:cover;transition:transform .35s}
 .res-g figure:hover img{transform:scale(1.04)}
 .res-g figcaption{font-size:12.5px;color:var(--dim);padding:9px 12px;letter-spacing:.03em}
+.res-g figure::after{
+  content:'▶';position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;
+  background:rgba(0,0,0,.55);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;line-height:1;
+}
 /* no celular vira carrossel: mostra as 3 em vez de esconder uma */
 @media(max-width:640px){
   .res-g{
@@ -340,6 +345,11 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   filter:grayscale(.25);transition:filter .3s,transform .3s}
 .gal img:hover{filter:none;transform:scale(1.02)}
 @media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ VÍDEOS ══ */
+.vids{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
+.vids .instagram-media{width:100% !important;max-width:328px !important;margin:0 !important}
+.vids iframe{min-height:580px}
 
 /* ══ VISITE ══ */
 .vis-g{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
@@ -508,18 +518,24 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     <div class="res rv">
       <div class="lbl">Trabalhos feitos aqui</div>
       <div class="res-g">
-        <figure>
-          <img width="360" height="640" src="assets/protese/1.jpg" alt="Cliente antes da aplicação da prótese capilar">
-          <figcaption>Antes da aplicação</figcaption>
-        </figure>
-        <figure>
-          <img width="360" height="640" src="assets/protese/2.jpg" alt="Prótese capilar finalizada, com resultado natural">
-          <figcaption>Resultado finalizado</figcaption>
-        </figure>
-        <figure>
-          <img width="360" height="640" src="assets/protese/3.jpg" alt="Prótese capilar finalizada, com resultado natural">
-          <figcaption>Resultado finalizado</figcaption>
-        </figure>
+        <a class="res-lk" href="https://www.instagram.com/moisesbarber_/reel/DbDycZQhLCs/" target="_blank" rel="noopener" aria-label="Ver vídeo desse antes e depois no Instagram">
+          <figure>
+            <img width="360" height="640" src="assets/protese/1.jpg" alt="Cliente antes da aplicação da prótese capilar">
+            <figcaption>Antes da aplicação</figcaption>
+          </figure>
+        </a>
+        <a class="res-lk" href="https://www.instagram.com/moisesbarber_/reel/Daijo8iTC8M/" target="_blank" rel="noopener" aria-label="Ver vídeo desse resultado no Instagram">
+          <figure>
+            <img width="360" height="640" src="assets/protese/2.jpg" alt="Prótese capilar finalizada, com resultado natural">
+            <figcaption>Resultado finalizado</figcaption>
+          </figure>
+        </a>
+        <a class="res-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" target="_blank" rel="noopener" aria-label="Ver vídeo desse resultado no Instagram">
+          <figure>
+            <img width="360" height="640" src="assets/protese/3.jpg" alt="Prótese capilar finalizada, com resultado natural">
+            <figcaption>Resultado finalizado</figcaption>
+          </figure>
+        </a>
       </div>
     </div>
 
@@ -626,6 +642,22 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       <img src="assets/fotos/7.jpg" alt="Corte feito na Barbearia Martins">
       <img src="assets/fotos/8.jpg" alt="Corte feito na Barbearia Martins">
     </div>
+  </div>
+</section>
+
+<!-- VÍDEOS (cole o link de cada Reels em data-instgrm-permalink pra ativar) -->
+<section class="sec" id="videos">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="eyebrow">No Instagram</div>
+      <h2>Vídeos recentes</h2>
+    </div>
+    <div class="vids" id="vids">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DcJTFeeR5cm/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DO3lbeWju-J/" data-instgrm-version="14"></blockquote>
+    </div>
+    <a class="mapl" href="https://instagram.com/barbeariamartins.0" target="_blank" rel="noopener">Ver mais no Instagram →</a>
   </div>
 </section>
 
@@ -805,6 +837,23 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     if(document.readyState === 'complete') conferir();
     else addEventListener('load', conferir);
     setTimeout(conferir, 4000);
+  }
+
+  /* vídeos: some sozinha se nenhum link do Reels foi colado ainda.
+     Quando tiver link real, carrega o embed.js do Instagram (só nesse caso,
+     pra não pedir nada de fora quando a seção não tem nada pra mostrar). */
+  var vidSec = document.getElementById('videos'), vids = document.getElementById('vids');
+  if(vids){
+    [].forEach.call(vids.querySelectorAll('.instagram-media'), function(bq){
+      if(bq.getAttribute('data-instgrm-permalink').indexOf('COLE-O-LINK') === 0) bq.remove();
+    });
+    if(vids.querySelector('.instagram-media')){
+      var emb = document.createElement('script');
+      emb.async = true; emb.src = 'https://www.instagram.com/embed.js';
+      document.body.appendChild(emb);
+    } else {
+      vidSec.hidden = true;
+    }
   }
 
   /* reveal */
