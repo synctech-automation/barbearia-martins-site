@@ -347,9 +347,24 @@ h2{font-size:clamp(26px,4.4vw,40px)}
 @media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
 
 /* ══ VÍDEOS ══ */
-.vids{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:24px}
-.vids .instagram-media{width:100% !important;max-width:328px !important;margin:0 !important}
-.vids iframe{min-height:580px}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.vids .vid-lk{display:contents}
+.vids figure{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000;position:relative}
+.vids img{width:100%;aspect-ratio:9/14;object-fit:cover;transition:transform .35s}
+.vids figure:hover img{transform:scale(1.04)}
+.vids figure::after{
+  content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(0,0,0,.55);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;
+}
+@media(max-width:640px){
+  .vids{
+    display:flex;overflow-x:auto;gap:10px;padding-bottom:6px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .vids::-webkit-scrollbar{display:none}
+  .vids figure{flex:0 0 70%;scroll-snap-align:start}
+}
 
 /* ══ VISITE ══ */
 .vis-g{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
@@ -645,7 +660,8 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   </div>
 </section>
 
-<!-- VÍDEOS (cole o link de cada Reels em data-instgrm-permalink pra ativar) -->
+<!-- VÍDEOS (miniatura local + link pro Reels — não usa o embed do Instagram,
+     que retorna erro 503 com frequência pra sites de terceiros) -->
 <section class="sec" id="videos">
   <div class="wrap">
     <div class="sec-hd">
@@ -653,9 +669,15 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       <h2>Vídeos recentes</h2>
     </div>
     <div class="vids" id="vids">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DcJTFeeR5cm/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" data-instgrm-version="14"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/barbeariamartins.0/reel/DO3lbeWju-J/" data-instgrm-version="14"></blockquote>
+      <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DcJTFeeR5cm/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
+        <figure><img width="360" height="640" src="assets/videos/1.jpg" alt="Vídeo recente da Barbearia Martins no Instagram" loading="lazy"></figure>
+      </a>
+      <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
+        <figure><img width="360" height="640" src="assets/videos/2.jpg" alt="Vídeo recente da Barbearia Martins no Instagram" loading="lazy"></figure>
+      </a>
+      <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DO3lbeWju-J/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
+        <figure><img width="360" height="640" src="assets/videos/3.jpg" alt="Vídeo recente da Barbearia Martins no Instagram" loading="lazy"></figure>
+      </a>
     </div>
     <a class="mapl" href="https://instagram.com/barbeariamartins.0" target="_blank" rel="noopener">Ver mais no Instagram →</a>
   </div>
@@ -837,23 +859,6 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     if(document.readyState === 'complete') conferir();
     else addEventListener('load', conferir);
     setTimeout(conferir, 4000);
-  }
-
-  /* vídeos: some sozinha se nenhum link do Reels foi colado ainda.
-     Quando tiver link real, carrega o embed.js do Instagram (só nesse caso,
-     pra não pedir nada de fora quando a seção não tem nada pra mostrar). */
-  var vidSec = document.getElementById('videos'), vids = document.getElementById('vids');
-  if(vids){
-    [].forEach.call(vids.querySelectorAll('.instagram-media'), function(bq){
-      if(bq.getAttribute('data-instgrm-permalink').indexOf('COLE-O-LINK') === 0) bq.remove();
-    });
-    if(vids.querySelector('.instagram-media')){
-      var emb = document.createElement('script');
-      emb.async = true; emb.src = 'https://www.instagram.com/embed.js';
-      document.body.appendChild(emb);
-    } else {
-      vidSec.hidden = true;
-    }
   }
 
   /* reveal */

@@ -61,24 +61,27 @@ Dica: use fotos quadradas (ou perto disso). Antes/depois de prótese funcionam m
 
 ---
 
-## Adicionar vídeos do Instagram
+## Trocar os vídeos do Instagram
 
-A seção "Vídeos recentes" também **aparece sozinha** — enquanto nenhum link for colado,
-fica escondida.
+A seção "Vídeos recentes" mostra 3 cartões com a miniatura do Reels — ao clicar,
+abre o vídeo direto no Instagram (não toca embutido no site).
 
-Para ligar:
+> ⚠️ **Por que não é embutido de verdade:** o player oficial do Instagram (o mesmo
+> usado nas 3 fotos de prótese) depende de um serviço deles que às vezes retorna
+> erro 503 pra sites de terceiros — quando isso acontece, o vídeo simplesmente
+> não aparece, sem aviso nenhum pro visitante. Miniatura + link é mais simples
+> e nunca quebra.
 
-1. Abra o Reels no app ou no site do Instagram (@barbeariamartins.0)
-2. Toque nos três pontinhos (⋯) → **Copiar link**
-3. No `index.html`, procure por `COLE-O-LINK-DO-REEL-AQUI` (aparecem 3 vezes)
-4. Troque cada um pelo link copiado, entre as aspas de `data-instgrm-permalink="..."`
-5. Salve — o vídeo aparece embutido de verdade (é o player oficial do Instagram, não um link)
+Para trocar por outro vídeo:
 
-Só tem 3 espaços prontos no arquivo. Se quiser mais, duplique a linha
-`<blockquote class="instagram-media" ...></blockquote>` dentro da `<div class="vids" id="vids">`
-e cole outro link.
+1. Abra o Reels no site do Instagram (@barbeariamartins.0), clique com o botão
+   direito na imagem/vídeo → **Salvar imagem como** (ou tire print da tela)
+2. Salve em `assets/videos/`, sobrescrevendo `1.jpg`, `2.jpg` ou `3.jpg`
+3. No `index.html`, ache a `<div class="vids" id="vids">` e troque o `href`
+   do `<a class="vid-lk" ...>` correspondente pelo link do novo Reels (⋯ → Copiar link)
+4. Salve
 
-Precisa ser um Reels ou post **público** — se a conta virar privada, o vídeo para de aparecer.
+Precisa ser um Reels ou post **público** — se a conta virar privada, o link para de abrir.
 
 ---
 
