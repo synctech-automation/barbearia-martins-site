@@ -12,6 +12,23 @@
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" href="assets/logo.png">
 
+<!-- Meta Pixel: mede quem clica em Agendar/WhatsApp vindo dos anúncios -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1742748987270067');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1742748987270067&ev=PageView&noscript=1"
+/></noscript>
+
 <!--
   ───────────────────────────────────────────────────────────
    BARBEARIA MARTINS
@@ -868,6 +885,18 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   [].forEach.call(document.querySelectorAll('.rv'), function(el){ io.observe(el) });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Meta Pixel: cliques em WhatsApp e Agendar contam como conversão nos anúncios */
+  document.addEventListener('click', function(e){
+    if(typeof fbq !== 'function') return;
+    var a = e.target.closest('a[href]');
+    if(!a) return;
+    if(a.href.indexOf('wa.me') !== -1){
+      fbq('track', 'Contact');
+    } else if(a.href.indexOf('cashbarber.com.br') !== -1){
+      fbq('track', 'Schedule');
+    }
+  });
 })();
 </script>
 </body>
