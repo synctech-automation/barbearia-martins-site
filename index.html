@@ -449,6 +449,48 @@ h2{font-size:clamp(26px,4.4vw,40px)}
 .float svg{width:20px;height:20px;flex:none}
 @media(max-width:560px){.float span{display:none}.float{padding:15px;border-radius:50%}}
 
+/* ══ efeitos interativos (assets/js/efeitos.js) ══ */
+/* rolagem suave: o Lenis anima a rolagem, então o smooth do CSS sai */
+html.com-lenis{scroll-behavior:auto}
+
+/* barra de progresso verde na base da barra do topo */
+.nav-prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--moss);
+  transform:scaleX(0);transform-origin:left;pointer-events:none}
+
+/* linha verde que se desenha embaixo dos títulos */
+.linha-sec{display:block;width:56px;height:2px;background:var(--moss);margin-top:18px;transform-origin:left}
+
+/* botão com feixe de luz correndo pela borda (Agendar) */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.btn-luz{position:relative;isolation:isolate}
+.btn-luz::before,.btn-luz::after{
+  content:'';position:absolute;inset:-3px;border-radius:6px;pointer-events:none;z-index:-1;
+  /* dois feixes opostos (0° e 180°), cada um com rastro verde e ponta branca */
+  background:conic-gradient(from var(--ang),
+    transparent 0 18%,var(--moss-dk) 30%,var(--moss-lt) 42%,#fff 48%,transparent 50%,
+    transparent 68%,var(--moss-dk) 80%,var(--moss-lt) 92%,#fff 98%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  padding:3px;animation:luz-borda 3.4s linear infinite;
+}
+/* o ::after é o brilho difuso em volta do feixe */
+.btn-luz::after{filter:blur(10px);opacity:.9;inset:-5px;padding:5px}
+.btn-luz:hover::before,.btn-luz:hover::after{animation-duration:1.6s}
+@keyframes luz-borda{to{--ang:360deg}}
+
+/* cartão 3D do antes/depois */
+.tilt{transform-style:preserve-3d}
+.tilt .pro-ad{position:relative;transform-style:preserve-3d;will-change:transform;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.9);touch-action:pan-y}
+.tilt-brilho{position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:2;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.22),transparent 55%);
+  opacity:0;transition:opacity .35s;mix-blend-mode:screen}
+.tilt .pro-ad:hover .tilt-brilho{opacity:1}
+
+@media(prefers-reduced-motion:reduce){
+  .btn-luz::before,.btn-luz::after{animation:none;opacity:.35}
+}
+
 /* ══ reveal ══ */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
@@ -479,6 +521,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       </button>
     </div>
   </div>
+  <div class="nav-prog" id="navProg" aria-hidden="true"></div>
 </nav>
 
 <!-- HERO -->
@@ -486,7 +529,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   <div class="wrap hero-in">
     <div class="hero-lg lgw"><img src="assets/logo.png" alt="Barbearia Martins" width="846" height="845"></div>
     <div>
-      <h1>Especialistas em<br><span>prótese capilar</span></h1>
+      <h1>Especialistas em <br><span>prótese capilar</span></h1>
       <p class="intro">
         Cabelo cheio no mesmo dia, sem cirurgia — é o que mais fazemos aqui.
         Também cuidamos de <b>corte, barba e coloração</b>, terça a sexta das 9h às 20h
@@ -496,7 +539,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
         <span class="dot"></span><span id="status-txt">Verificando horário…</span>
       </div>
       <div class="hero-act">
-        <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
+        <a class="btn btn-p btn-luz" data-ima href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
           Agendar online
         </a>
@@ -515,13 +558,18 @@ h2{font-size:clamp(26px,4.4vw,40px)}
 
     <div class="rv">
       <span class="selo">Nossa especialidade</span>
-      <h2 class="big">Prótese capilar<br><span>sem cirurgia, no mesmo dia</span></h2>
+      <h2 class="big">Prótese capilar <br><span>sem cirurgia, no mesmo dia</span></h2>
+      <span class="linha-sec" aria-hidden="true"></span>
     </div>
 
     <div class="pro-top rv">
-      <figure class="pro-ad">
-        <img width="640" height="320" src="assets/protese/antes-depois.jpg" alt="Antes e depois de uma prótese capilar feita na Barbearia Martins">
-      </figure>
+      <!-- cartão 3D: inclina com o mouse (ou arrastando o dedo de lado) e gira de leve ao rolar -->
+      <div class="tilt">
+        <figure class="pro-ad" data-tilt data-cortina>
+          <img width="1280" height="640" src="assets/protese/antes-depois-hd.webp" alt="Antes e depois de uma prótese capilar feita na Barbearia Martins">
+          <span class="tilt-brilho" aria-hidden="true"></span>
+        </figure>
+      </div>
 
       <div class="txt">
         <p>
@@ -540,7 +588,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
           <div><b>Fica natural</b><span>De perto ninguém percebe</span></div>
         </div>
 
-        <a class="btn btn-p" href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pr%C3%B3tese%20capilar." target="_blank" rel="noopener">
+        <a class="btn btn-p btn-luz" data-ima href="https://wa.me/5531982800596?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pr%C3%B3tese%20capilar." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
           Pedir orçamento grátis
         </a>
@@ -551,20 +599,20 @@ h2{font-size:clamp(26px,4.4vw,40px)}
       <div class="lbl">Trabalhos feitos aqui</div>
       <div class="res-g">
         <a class="res-lk" href="https://www.instagram.com/moisesbarber_/reel/DbDycZQhLCs/" target="_blank" rel="noopener" aria-label="Ver vídeo desse antes e depois no Instagram">
-          <figure>
-            <img width="360" height="640" src="assets/protese/1.jpg" alt="Cliente antes da aplicação da prótese capilar">
+          <figure data-cortina>
+            <img width="720" height="1280" src="assets/protese/1-hd.webp" alt="Cliente antes da aplicação da prótese capilar">
             <figcaption>Antes da aplicação</figcaption>
           </figure>
         </a>
         <a class="res-lk" href="https://www.instagram.com/moisesbarber_/reel/Daijo8iTC8M/" target="_blank" rel="noopener" aria-label="Ver vídeo desse resultado no Instagram">
-          <figure>
-            <img width="360" height="640" src="assets/protese/2.jpg" alt="Prótese capilar finalizada, com resultado natural">
+          <figure data-cortina>
+            <img width="720" height="1280" src="assets/protese/2-hd.webp" alt="Prótese capilar finalizada, com resultado natural">
             <figcaption>Resultado finalizado</figcaption>
           </figure>
         </a>
         <a class="res-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" target="_blank" rel="noopener" aria-label="Ver vídeo desse resultado no Instagram">
-          <figure>
-            <img width="360" height="640" src="assets/protese/3.jpg" alt="Prótese capilar finalizada, com resultado natural">
+          <figure data-cortina>
+            <img width="720" height="1280" src="assets/protese/3-hd.webp" alt="Prótese capilar finalizada, com resultado natural">
             <figcaption>Resultado finalizado</figcaption>
           </figure>
         </a>
@@ -615,6 +663,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     <div class="sec-hd rv">
       <div class="eyebrow">O que mais fazemos</div>
       <h2>Corte, barba<br>e coloração</h2>
+      <span class="linha-sec" aria-hidden="true"></span>
     </div>
 
     <div class="svc-list rv">
@@ -684,16 +733,17 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     <div class="sec-hd">
       <div class="eyebrow">No Instagram</div>
       <h2>Vídeos recentes</h2>
+      <span class="linha-sec" aria-hidden="true"></span>
     </div>
     <div class="vids" id="vids">
       <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DcJTFeeR5cm/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
-        <figure><img width="360" height="640" src="assets/videos/1.jpg" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
+        <figure data-cortina><img width="720" height="1280" src="assets/videos/1-hd.webp" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
       </a>
       <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DQKKdoIEYSK/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
-        <figure><img width="360" height="640" src="assets/videos/2.jpg" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
+        <figure data-cortina><img width="720" height="1280" src="assets/videos/2-hd.webp" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
       </a>
       <a class="vid-lk" href="https://www.instagram.com/barbeariamartins.0/reel/DO3lbeWju-J/" target="_blank" rel="noopener" aria-label="Ver vídeo no Instagram">
-        <figure><img width="360" height="640" src="assets/videos/3.jpg" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
+        <figure data-cortina><img width="720" height="1280" src="assets/videos/3-hd.webp" alt="Vídeo recente da Barbearia Martins no Instagram"></figure>
       </a>
     </div>
     <a class="mapl" href="https://instagram.com/barbeariamartins.0" target="_blank" rel="noopener">Ver mais no Instagram →</a>
@@ -706,6 +756,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     <div class="sec-hd rv">
       <div class="eyebrow">Onde e quando</div>
       <h2>Passa na barbearia</h2>
+      <span class="linha-sec" aria-hidden="true"></span>
     </div>
 
     <div class="vis-g rv">
@@ -742,7 +793,7 @@ h2{font-size:clamp(26px,4.4vw,40px)}
     <p>Escolhe o dia e o horário na nossa agenda online — leva menos de um minuto. Prefere conversar? Chama no WhatsApp.</p>
     <a class="fone" href="tel:+5531982800596">(31) 98280-0596</a>
     <div class="row">
-      <a class="btn btn-p" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
+      <a class="btn btn-p btn-luz" href="https://cashbarber.com.br/Martins" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
         Agendar online
       </a>
@@ -899,5 +950,11 @@ h2{font-size:clamp(26px,4.4vw,40px)}
   });
 })();
 </script>
+<!-- efeitos interativos (bibliotecas servidas pelo próprio site, carregam depois do conteúdo) -->
+<script src="assets/js/gsap.min.js" defer></script>
+<script src="assets/js/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/SplitText.min.js" defer></script>
+<script src="assets/js/lenis.min.js" defer></script>
+<script src="assets/js/efeitos.js" defer></script>
 </body>
 </html>
